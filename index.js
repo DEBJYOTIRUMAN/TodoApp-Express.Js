@@ -16,6 +16,7 @@ const hbs = create({
         ne: (v1, v2) => v1 !== v2,
         and: (v1, v2) => v1 && v2,
         dateFormat: (date, format) => moment(date).format(format),
+        inc: (value) => parseInt(value, 10) + 1,
     }
 });
 app.engine('handlebars', hbs.engine);
