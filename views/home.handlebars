@@ -1,0 +1,88 @@
+{{#if error}}
+{{#if (eq error "Todo Failed!")}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error}}</strong> {{errorMsg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+{{/if}}
+
+<div class="container my-3">
+    <h2>Add New Todo</h2>
+    <form action="/home" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label">Todo Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+            <div class="invalid-feedback">
+                Please enter a todo title.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Todo Description</label>
+            <input type="text" class="form-control" id="desc" name="desc" required>
+            <div class="invalid-feedback">
+                Please enter a todo description.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+</div>
+
+<div class="container my-3">
+  <h2>Your Todos</h2>
+
+  {{#if allTodo.length}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SNo</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Time</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each allTodo as |todo index|}}
+      <tr>
+        <th scope="row">{{index}}</th>
+        <td>{{todo.title}}</td>
+        <td>{{todo.desc}}</td>
+        <td>{{dateFormat todo.createdAt 'YYYY-MM-DD'}}</td>
+        <td>
+          <div class="d-flex">
+            <a href="/show/{{todo._id}}" type="button" class="btn btn-outline-dark btn-sm">Show</a>
+            <a href="/update/{{todo._id}}" type="button" class="btn btn-outline-success btn-sm ms-2">Update</a>
+            <a href="/delete/{{todo._id}}" type="button" class="btn btn-outline-danger btn-sm ms-2">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <div class="alert alert-primary" role="alert">
+    No Todos found. Add your first todo now!
+  </div>
+  {{/if}}
+</div>
+
+<script>
+    (() => {
+        'use strict'
+
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>

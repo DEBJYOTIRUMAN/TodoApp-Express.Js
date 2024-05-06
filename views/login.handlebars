@@ -1,0 +1,56 @@
+{{#if error}}
+{{#if (eq error "Login Failed!")}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error}}</strong> {{errorMsg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+{{/if}}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 mt-5">
+            <h2>Login Account</h2>
+            <form action="/" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                        autocomplete="username" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                        autocomplete="current-password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/register" class="btn btn-dark ms-1">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    (() => {
+        'use strict'
+
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>

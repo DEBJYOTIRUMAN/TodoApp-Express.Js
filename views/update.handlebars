@@ -1,0 +1,49 @@
+{{#if error}}
+{{#if (eq error "Update Failed!")}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error}}</strong>
+    {{errorMsg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+{{/if}}
+
+<div class="container my-3">
+    <h2>Update Todo</h2>
+    <form id="updateForm" action="/update/{{todo._id}}" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label">Todo Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{todo.title}}" required />
+            <div class="invalid-feedback">
+                Please enter a todo title.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Todo Description</label>
+            <input type="text" class="form-control" id="desc" name="desc" value="{{todo.desc}}" required />
+            <div class="invalid-feedback">
+                Please enter a todo description.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+</div>
+
+<script>
+    (() => {
+        'use strict'
+
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>

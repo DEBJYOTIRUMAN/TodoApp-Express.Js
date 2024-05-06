@@ -1,0 +1,28 @@
+{
+  "name": "todoapp-expressjs",
+  "version": "1.0.0",
+  "description": "TodoApp With Authentication System in Express.js, Handlebars, MongoDB, Express-Session, Joi & Node.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Debjyoti Das",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "joi": "^17.13.1",
+    "moment": "^2.30.1",
+    "mongoose": "^8.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <h2>User Account</h2>
+            <div class="mt-3">
+            <p><b>Account Name:</b> {{user.name }}</p>
+            <p><b>Account Email:</b> {{user.email }}</p>
+            <p><b>Account No:</b> {{user._id }}</p>
+            <p><b>Account Created:</b> {{dateFormat user.createdAt 'YYYY-MM-DD'}}</p>
+            <a href="/logout" type="button" class="btn btn-dark">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
